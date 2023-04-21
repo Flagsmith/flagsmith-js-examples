@@ -1,15 +1,8 @@
 <img width="100%" src="https://github.com/Flagsmith/flagsmith/raw/main/static-files/hero.png"/>
 
-# Flagsmith Javascript Client
+# Flagsmith Javascript Examples
 
-[![npm version](https://badge.fury.io/js/flagsmith.svg)](https://badge.fury.io/js/flagsmith)
-[![](https://data.jsdelivr.com/v1/package/npm/flagsmith/badge)](https://www.jsdelivr.com/package/npm/flagsmith)
-
-The SDK clients for web and React Native for [https://www.flagsmith.com/](https://www.flagsmith.com/). Flagsmith allows you to manage feature flags and remote config across multiple projects, environments and organisations.
-
-## Adding to your project
-
-For full documentation visit [https://docs.flagsmith.com/clients/javascript/](https://docs.flagsmith.com/clients/javascript/)
+Examples of using the Flagsmith Javascript SDK in a variety of frameworks.
 
 ## Contributing
 
@@ -17,7 +10,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/kyle-ssg/c36a03aebe492e45c
 
 ## Getting Help
 
-If you encounter a bug or feature request we would like to hear about it. Before you submit an issue please search existing issues in order to prevent duplicates. 
+If you encounter a bug or feature request we would like to hear about it. Before you submit an issue please search existing issues in order to prevent duplicates.
 
 ## Get in touch
 

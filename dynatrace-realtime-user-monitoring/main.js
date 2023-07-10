@@ -8,7 +8,6 @@ function toggleTrait() {
 }
 
 function login() {
-    dtrum.identifyUser(flagsmithIdentity)
     flagsmith.identify(flagsmithIdentity);
 };
 
@@ -34,8 +33,6 @@ $("#js-toggle-trait").on("click", toggleTrait);
 flagsmith.init({
     environmentID: environmentID,
     cacheFlags: true,
-    enableLogs: true,
-    enableAnalytics: true,
     //specifying dtrum tells flagsmith to set session properties (see console)
     enableDynatrace: true,
     defaultFlags: {
@@ -46,6 +43,8 @@ flagsmith.init({
         $("#loading").addClass("hidden")
 
         if (flagsmith.identity) {
+
+            dtrum.identifyUser(flagsmith.identity)
             $("#logged-in").removeClass("hidden")
             $("#logged-out").addClass("hidden")
             $("#js-example-trait").text(flagsmith.getTrait("favourite_color") + "");

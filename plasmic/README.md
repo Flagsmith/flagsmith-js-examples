@@ -13,26 +13,42 @@ Based on the following, we render /homev2 when visiting /:
 
 ![img.png](img.png)
 
-## Getting Started
+## The code that does this
 
-First, run the development server:
+The example works almost identically to the create-plasmic-app one with 2 modifications
+
+```
+    const plasmicPath = typeof catchall === 'string' ? catchall : Array.isArray(catchall) ? `/${catchall.join('/')}` : '/';
+    // Check if there's a remote config for that page, if so, render that page instead of the provided route.
+    const flagsmithPath = flagsmithSSR.getValue(`plasmic_${plasmicPath}`);
+    if(flagsmithPath) {
+        console.log("Found page for feature feature", `plasmic_${plasmicPath}`, flagsmithPath)
+    }
+    const plasmicData = await PLASMIC.maybeFetchComponentData( `${flagsmithPath || plasmicPath}`);
+
+```
+
+and
+
+```
+ const queryCache = await extractPlasmicQueryData(
+        <FlagsmithProvider flagsmith={flagsmithSSR}
+                           serverState={flagsmithSSR.getState()}
+        >
+            <PlasmicRootProvider
+                loader={PLASMIC}
+                prefetchedData={plasmicData}
+                pageParams={pageMeta.params}
+            >
+                <PlasmicComponent component={pageMeta.displayName}/>
+            </PlasmicRootProvider>
+        </FlagsmithProvider>
+    );
+```
+
+## Running the example
 
 ```bash
 npm run dev
 ```
 
-Open your browser to see the result.
-
-You can start editing your project in Plasmic Studio. The page auto-updates as you edit the project.
-
-## Learn More
-
-With Plasmic, you can enable non-developers on your team to publish pages and content into your website or app.
-
-To learn more about Plasmic, take a look at the following resources:
-
-- [Plasmic Website](https://www.plasmic.app/)
-- [Plasmic Documentation](https://docs.plasmic.app/learn/)
-- [Plasmic Slack Community](https://www.plasmic.app/slack)
-
-You can check out [the Plasmic GitHub repository](https://github.com/plasmicapp/plasmic) - your feedback and contributions are welcome!

@@ -1,22 +1,14 @@
 import '../styles/globals.css';
-import type { AppProps } from 'next/app';
-import { FlagsmithProvider } from 'flagsmith-es/react';
+import type {AppProps} from 'next/app';
+import {FlagsmithProvider} from 'flagsmith-es/react';
 import flagsmith from 'flagsmith-es/isomorphic';
-import { IState } from 'flagsmith-es/types';
-const environmentID = "AbXqsQqLLAzmfj5SGCm8Ng"
+import {IState} from 'flagsmith-es/types';
+import {AppContextType} from "next/dist/shared/lib/utils";
 
-const options = {
-    api: "https://edge.bullet-train-staging.win/api/v1/",
-    environmentID,
-    enableLogs: false,
-    realtime: typeof window!== 'undefined'?true:false,
-    eventSourceUrl: "https://realtime-staging.flagsmith.com/",
-}
-
-function MyApp({ Component, pageProps, flagsmithState }: AppProps & {flagsmithState: IState}) {
+function MyApp({ Component, identity, pageProps, flagsmithState }: AppProps & {flagsmithState: IState, identity:string|undefined}) {
     return (
         <FlagsmithProvider flagsmith={flagsmith}
-                           options={options}
+                           key={identity}
                            serverState={flagsmithState as IState}
 >
             <Component {...pageProps} />
@@ -25,13 +17,24 @@ function MyApp({ Component, pageProps, flagsmithState }: AppProps & {flagsmithSt
 }
 
 
-MyApp.getInitialProps = async () => {
+MyApp.getInitialProps = async ({ctx}:AppContextType) => {
+    const identity = ctx.query?.identity ? `${ctx.query.identity}` : undefined
     if(!flagsmith.initialised) {
-        // Initialise flagsmith if it hasn't been already in memory.
-        await flagsmith.init(options);
+        // Ensures flagsmith is only initialised once
+        await flagsmith.init({
+            environmentID: "QjgYur4LQTwe5HpvbvhpzK",
+            identity,
+        });
     }
-
-  return { flagsmithState: flagsmith.getState() }
+    if(flagsmith.identity!== identity) {
+        // If the identity has changed, identify or logout.
+        // Note: this would be called on the client upon routing.
+        await identity? flagsmith.identify(`${identity}`): flagsmith.logout()
+    }
+  return {
+      identity: identity,
+      flagsmithState: flagsmith.getState(),
+    }
 }
 
 export default MyApp;

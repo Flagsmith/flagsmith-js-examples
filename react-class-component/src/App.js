@@ -6,13 +6,13 @@ class App extends Component {
     super(props)
     this.state = {
       fontSizeEnabled: false,
-      fontSize: 0,
+      fontSize: 10,
       identity: null,
       trait: undefined,
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevState) {
     if (prevState.identity !== this.state.identity) {
       this.updateFlags()
     }
@@ -20,9 +20,9 @@ class App extends Component {
 
   updateFlags() {
     try {
-      const fontSizeEnabled =  flagsmith.hasFeature('font_size');
-      const fontSize =  flagsmith.getValue('font_size');
-      const exampleTrait =  flagsmith.getTrait('example_trait');
+      const fontSizeEnabled = flagsmith.hasFeature('font_size');
+      const fontSize = flagsmith.getValue('font_size');
+      const exampleTrait = flagsmith.getTrait('example_trait');
       this.setState({
         fontSizeEnabled,
         fontSize,
@@ -35,24 +35,26 @@ class App extends Component {
 
   handleLogout = async () => {
     await flagsmith.logout()
-     this.updateFlags()
+    this.updateFlags()
     this.setState({ identity: undefined })
   }
 
   handleIdentify = async () => {
     const identity = await flagsmith.identify('flagsmith_sample_user')
-     this.updateFlags()
+    this.updateFlags()
     this.setState({ identity })
   }
 
   render() {
-    const { fontSizeEnabled, fontSize, trait, identity } = this.state
+    const { fontSizeEnabled, fontSize, trait } = this.state
 
     return (
       <div>
         <h1>Flagsmith Example</h1>
         <div className='App'>
-          font_size: {fontSize} example_trait: {trait}
+          <p>Font size enabled: {fontSizeEnabled.toString()} </p>
+          <p style={{ fontSize }}>font_size: {fontSize}</p>
+          <p>example_trait: {trait}</p>
           <div>
           {trait ? (
             <button onClick={this.handleLogout}>Logout</button>

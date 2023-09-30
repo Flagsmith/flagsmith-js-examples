@@ -37,7 +37,6 @@ MyApp.getInitialProps = async ({ctx}:AppContextType) => {
       flagsmithState: flagsmithInstance.getState(),
       identity
     }
-
 }
 
 export default MyApp;

@@ -1,0 +1,150 @@
+html {
+    --purple: #4E25DA;
+    --white: #fff;
+    --black: #192634;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+* {
+    
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.modal {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    color: var(--black);
+    background-color: var(--white);
+    border: 2px solid var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 100;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.modal form {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+}
+
+.announcement {
+    width: 80%;
+    background-color: var(--purple);
+    color: var(--white);
+    height: 100%;
+    padding: 10px;
+    text-align: center;
+    font-weight: 700;
+    margin: auto;
+    border-radius: 8px;
+}
+
+ol li::marker {
+   font-weight: bold;
+}
+
+li {
+    margin-bottom: 4px;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 1280px;
+    margin-bottom: 10px;
+}
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2;
+}
+
+
+.imagesBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.imagesBox > img {
+    width: auto;
+    object-fit: scale-down;
+    object-position: left;
+    /* max-width: 900px; */
+    height: auto;
+    border-radius: 8px;
+}
+
+
+button {
+    background-color: var(--purple);
+    color: var(--white);
+    padding: 8px 20px;
+    border: none;
+    text-align: center;
+    border-radius: 6px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.json {
+    white-space: pre-wrap;
+}
+
+.links {
+    width: 100%;
+    color: var(--white);
+    background-color: var(--purple);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.icons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.icons a {
+    color: var(--white);
+    text-align: right;
+}
+
+.hidden {
+    display: none;
+}

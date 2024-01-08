@@ -9,7 +9,7 @@ flagsmith.init({
   api: 'https://edge.api.flagsmith.com/api/v1/', // Defaults to Flagsmith edge API
   enableAnalytics: true, // See https://docs.flagsmith.com/flag-analytics/ for more info
 
-  // Using caching options you're limiting your max number of api calls.
+  // Using caching options you're reducing the number of api calls for each user.
   // For example, if the ttl for your cache is 600000ms, basically, your cache is going to be refreshed only after 10 minutes.
   cacheFlags: true, // stores flags in localStorage cache
   cacheOptions: {
@@ -19,6 +19,10 @@ flagsmith.init({
   // If you are using the Free plan, StartUp plan or Self-Hosting you don't have real time available.
   // This feature is only available for Scale Up and Enterprise plan. See https://docs.flagsmith.com/advanced-use/real-time-flags
   // realTime: true,
+  // Set as a identity if you want to fetch flags only for this specific identity.
+  // identity: 'some_identity',
+  // Set as a trait if you want to fetch flags only for this specific trait.
+  // traits: '{ age: 21, country: 'England', employee: true }',
 
   onChange: (oldFlags, params) => {
     document.getElementById('loading').classList.add('hidden')
@@ -127,10 +131,7 @@ flagsmith.init({
   },
 })
 
-// Set as a identity if you want to fetch flags only for this specific identity.
-// identity: 'some_identity',
-// Set as a trait if you want to fetch flags only for this specific trait.
-// traits: 'some_trait',
+
 
 function login(formData) {
   formData.preventDefault()

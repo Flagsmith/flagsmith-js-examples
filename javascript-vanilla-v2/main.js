@@ -22,7 +22,7 @@ flagsmith.init({
   // Set as a identity if you want to fetch flags only for this specific identity.
   // identity: 'some_identity',
   // Set as a trait if you want to fetch flags only for this specific trait.
-  // traits: '{ age: 21, country: 'England', employee: true }',
+  // traits: { age: 21, country: 'England', employee: true },
 
   onChange: (oldFlags, params) => {
     document.getElementById('loading').classList.add('hidden')

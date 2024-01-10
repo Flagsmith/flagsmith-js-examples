@@ -43,7 +43,7 @@ flagsmith.init({
     const announcement = flagsmith.hasFeature('announcement')
     const announcementValue = flagsmith.getValue('announcement')
     const images = flagsmith.hasFeature('images')
-    //  Check is the update is from server, otherwise, its the default flags.
+    //  Check if the update is from server, otherwise, its the default flags.
     // If default flags is not defined, all values will be undefined.
     // All getters should be used outside the server check, because they need to be called BEFORE the server can send the update.
     if (isFromServer) {

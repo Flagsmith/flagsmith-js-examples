@@ -1,9 +1,5 @@
 import { FC } from 'react'
-import {
-  useBooleanFlagValue,
-  useNumberFlagValue,
-  useStringFlagValue,
-} from '@openfeature/react-sdk'
+import {useBooleanFlagValue, useNumberFlagValue, useStringFlagValue} from '@openfeature/react-sdk'
 
 type WelcomeMessageType = {}
 

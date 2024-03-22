@@ -15,9 +15,9 @@ function App() {
         <div className='App'>
             font_size: {font_size}
             <button onClick={()=>{
-                console.log(OpenFeature.getClient().getNumberValue("font_size"))
+                console.log(OpenFeature.getClient().getNumberValue("font_size", 12))
             }}>
-
+                Check number value
             </button>
             {
                 context.targetingKey ? (

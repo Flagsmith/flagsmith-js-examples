@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {FlagsmithProvider} from '@openfeature/flagsmith'
 import App from './App';
+import {FlagsmithProvider} from '@openfeature/flagsmith'
 import {OpenFeature} from "@openfeature/web-sdk";
 import {OpenFeatureProvider} from "@openfeature/react-sdk";
 

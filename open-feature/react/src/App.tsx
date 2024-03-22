@@ -14,11 +14,6 @@ function App() {
     return (
         <div className='App'>
             font_size: {font_size}
-            <button onClick={()=>{
-                console.log(OpenFeature.getClient().getNumberValue("font_size", 12))
-            }}>
-                Check number value
-            </button>
             {
                 context.targetingKey ? (
                     <button onClick={logout}>

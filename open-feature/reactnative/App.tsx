@@ -19,16 +19,13 @@ OpenFeature.setProviderAndWait(
     cacheFlags: true,
     AsyncStorage,
   }),
-).finally(() => {
-  alert('');
-});
+);
+
 function App(): React.JSX.Element {
   return (
     <OpenFeatureProvider>
       <>
-        <Suspense fallback={<></>}>
-          <ExampleComponent />
-        </Suspense>
+        <ExampleComponent />
       </>
     </OpenFeatureProvider>
   );

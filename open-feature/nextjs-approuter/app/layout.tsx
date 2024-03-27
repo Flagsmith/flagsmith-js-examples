@@ -22,6 +22,10 @@ export default async function RootLayout({
 }>) {
   const defaultUser = useDefaultUser()
   const flagsmith = createFlagsmithInstance()
+    await Promise.all([
+        OpenFeature.clearContexts(),
+        OpenFeature.clearProviders()
+    ])
   if(defaultUser?.id){
       OpenFeature.setContext({
           targetingKey:defaultUser.id,

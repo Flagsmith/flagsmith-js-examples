@@ -18,12 +18,14 @@ const FeatureFlagProvider: FC<FeatureFlagProviderType> = ({
   const renderRef = useRef(true)
   const flagsmithInstance = useRef(createFlagsmithInstance())
   if (renderRef.current) {
+    flagsmithInstance.current.setState(serverState)
     OpenFeature.setProvider(
       new FlagsmithProvider({
         flagsmithInstance: flagsmithInstance.current,
         environmentID: 'QjgYur4LQTwe5HpvbvhpzK',
       }),
     )
+    renderRef.current = false;
   }
 
   return (

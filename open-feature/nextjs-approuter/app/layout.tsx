@@ -7,6 +7,7 @@ import { createFlagsmithInstance } from 'flagsmith/isomorphic'
 import FeatureFlagProvider from '@/app/components/FeatureFlagProvider'
 import { FlagsmithProvider } from '@openfeature/flagsmith'
 import { OpenFeature } from '@openfeature/web-sdk'
+import getTraits from "@/app/utils/getTraits";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,6 +22,12 @@ export default async function RootLayout({
 }>) {
   const defaultUser = useDefaultUser()
   const flagsmith = createFlagsmithInstance()
+  if(defaultUser?.id){
+      OpenFeature.setContext({
+          targetingKey:defaultUser.id,
+          traits:getTraits(defaultUser)!
+      })
+  }
   await OpenFeature.setProviderAndWait(
     new FlagsmithProvider({
       flagsmithInstance: flagsmith,

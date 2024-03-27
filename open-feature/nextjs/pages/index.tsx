@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import { useFlags } from 'flagsmith-es/react';
 import Link from "next/link";
 import {useNumberFlagValue} from "@openfeature/react-sdk";
 

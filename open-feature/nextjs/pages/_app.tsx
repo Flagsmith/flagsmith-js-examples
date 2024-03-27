@@ -14,10 +14,10 @@ function MyApp({ Component, identity, pageProps, flagsmithState }: AppProps & {f
     const flagsmithRef = useRef(createFlagsmithInstance())
     const renderRef = useRef(true);
     if(renderRef.current) {
+        flagsmithRef.current.setState(flagsmithState)
         OpenFeature.setProvider(new FlagsmithProvider({
             environmentID,
             preventFetch: isClient, // optionally prevent clientside fetching of flags
-            state: flagsmithState,
             flagsmithInstance: flagsmithRef.current
         }))
         renderRef.current = false

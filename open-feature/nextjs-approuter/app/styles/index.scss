@@ -1,0 +1,87 @@
+$primary400: #8558fe;
+$primary: #6837fc;
+$primary600: #5b32f5;
+$primary700: #452aec;
+
+$btn-link-color: $primary;
+$btn-link-hover-color: $primary600;
+$body-bg: black;
+$body-color: white;
+$font-family-monospace: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+$code-color: white;
+
+$glow: linear-gradient( to bottom right, rgba(1, 65, 255, 0), rgba(1, 65, 255, 0), transparentize($primary,0.7) );
+$glow-primary:radial-gradient(transparentize($primary,0.6), rgba(1, 65, 255, 0));
+$font-sizes: (
+        md: 16px,
+        sm: 13px,
+);
+@import "bootstrap/scss/bootstrap";
+
+
+//create-next-app styles
+.logo-container {
+  &::before{
+    width: 480px;
+    height: 360px;
+    margin-left: -400px;
+    background: $glow;
+    border-radius: 50%;
+  }
+  &::after{
+    width: 240px;
+    height: 180px;
+    z-index: -1;
+    background: $glow-primary;
+  }
+  &::before, &::after {
+    content: "";
+    left: 50%;
+    position: absolute;
+    filter: blur(45px);
+    transform: translateZ(0px);
+    background-color: $glow;
+  }
+}
+
+
+.card {
+  color: white;
+  text-decoration: none;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: calc(100vh - 100px);
+}
+
+.logo {
+  position: relative;
+  filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
+}
+
+.vercelLogo {
+  filter: invert(1);
+}
+
+
+.card {
+  span {
+    display: inline-block;
+    transition: transform 200ms ease 0s;
+  }
+}
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    background: rgba(var(--card-rgb), 0.1);
+  }
+
+  .card:hover span {
+    transform: translateX(4px);
+  }
+}

@@ -20,7 +20,7 @@
     "@angular/router": "^17.3.0",
     "@openfeature/web-sdk": "^1.0.0",
     "@openfeature/flagsmith": "^0.1.0",
-    "flagsmith": "^3.23.2",
+    "flagsmith": "^3.24.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

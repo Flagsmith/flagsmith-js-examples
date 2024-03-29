@@ -14,6 +14,7 @@ import {NgIf, NgFor, NgForOf} from '@angular/common';
 export class AppComponent {
   logs = [] as any[];
   loading = true;
+  loggedIn = false;
   environmentID = 'QjgYur4LQTwe5HpvbvhpzK';
   identity = null as string | null;
   buttonClicks = null;
@@ -22,9 +23,18 @@ export class AppComponent {
 
   constructor() {
     const { environmentID, handleFlags, handleFlagsError } = this;
+    // Mock cached logged in user and provider it to OpenFeature
+    try {
+      const userData = localStorage.getItem("userData")
+      if(userData) {
+        const {id,...rest} = JSON.parse(userData)
+        OpenFeature.setContext({targetingKey: id, traits: {...rest}})
+      }
+    } catch {}
 
     const flagsmithFeatureFlagWebProvider = new FlagsmithProvider({
       environmentID,
+      cacheFlags: true,
       defaultFlags: {
         default_feature: {enabled: true},
         font_size: { enabled: true, value: 12 },
@@ -43,7 +53,7 @@ export class AppComponent {
       timestamp: new Date().toTimeString(),
       json_value: JSON.stringify(client.getObjectValue("json_value", {})),
       font_size: client.getNumberValue("font_size", 12),
-      off_value: client.getBooleanValue("off_value", false)
+      off_value: client.getBooleanValue("off_value", false),
     }].concat(this.logs);
     this.identity = OpenFeature.getContext().targetingKey || null;
   }
@@ -57,17 +67,9 @@ export class AppComponent {
   }
 
   login = () => {
-    OpenFeature.setContext({targetingKey: 'flagsmith_sample_user'});
-  }
-
-  submitTrait = () => {
-    // OpenFeature.setContext({
-    //   targetingKey: 'flagsmith_sample_user',
-    //   traits: {
-    //     ...(OpenFeature.getContext().traits as any || {}),
-    //     example_trait: 'Some value ' + Math.floor(Math.random() * 10) + ''
-    //   }
-    // });
+    const userData = {id:"flagsmith_sample_user", example_trait: 1}
+    OpenFeature.setContext({targetingKey: userData.id, traits:{example_trait:userData.example_trait}});
+    localStorage.setItem("userData", JSON.stringify(userData))
   }
 
 }

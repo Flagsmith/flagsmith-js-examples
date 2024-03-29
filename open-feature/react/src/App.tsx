@@ -6,7 +6,9 @@ function App() {
     const font_size = useNumberFlagValue('font_size', 12)
     const context = OpenFeature.getContext();
     const identify = () => {
-        OpenFeature.setContext({targetingKey: 'flagsmith_sample_user'})
+        const userData = {id:"flagsmith_sample_user", example_trait: 1}
+        OpenFeature.setContext({targetingKey: userData.id, traits:{example_trait:userData.example_trait}});
+        localStorage.setItem("userData", JSON.stringify(userData))
     };
     const logout = () => {
         OpenFeature.setContext({})

@@ -12,7 +12,17 @@ import {OpenFeatureProvider} from '@openfeature/react-sdk';
 import {FlagsmithProvider} from '@openfeature/flagsmith';
 import ExampleComponent from './ExampleComponent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-OpenFeature.setProviderAndWait(
+
+try {
+  AsyncStorage.getItem('userData').then(userData => {
+    if (userData) {
+      const {id, ...rest} = JSON.parse(userData);
+      OpenFeature.setContext({targetingKey: id, traits: {...rest}});
+    }
+  });
+} catch {}
+
+OpenFeature.setProvider(
   new FlagsmithProvider({
     environmentID: 'QjgYur4LQTwe5HpvbvhpzK',
     flagsmithInstance: flagsmith,
@@ -24,9 +34,9 @@ OpenFeature.setProviderAndWait(
 function App(): React.JSX.Element {
   return (
     <OpenFeatureProvider>
-      <>
+      <Suspense>
         <ExampleComponent />
-      </>
+      </Suspense>
     </OpenFeatureProvider>
   );
 }

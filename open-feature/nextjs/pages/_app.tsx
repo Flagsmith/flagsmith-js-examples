@@ -34,7 +34,7 @@ MyApp.getInitialProps = async ({ctx}:AppContextType) => {
     // Replace with your approach to detecting logged in users
     const identity = ctx.query?.identity ? `${ctx.query.identity}` : undefined
     const flagsmithInstance = createFlagsmithInstance()
-    OpenFeature.setContext(identity?{targetingKey: identity}:{})
+    OpenFeature.setContext(identity?{targetingKey: identity, traits:{example_trait:1}}:{})
     await OpenFeature.setProviderAndWait(
         new FlagsmithProvider({
             flagsmithInstance: flagsmithInstance,

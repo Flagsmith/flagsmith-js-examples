@@ -12,6 +12,7 @@ import {OpenFeatureProvider} from '@openfeature/react-sdk';
 import {FlagsmithProvider} from '@openfeature/flagsmith';
 import ExampleComponent from './ExampleComponent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Text} from 'react-native';
 
 try {
   AsyncStorage.getItem('userData').then(userData => {
@@ -34,7 +35,7 @@ OpenFeature.setProvider(
 function App(): React.JSX.Element {
   return (
     <OpenFeatureProvider>
-      <Suspense>
+      <Suspense fallback={<Text>Loading</Text>}>
         <ExampleComponent />
       </Suspense>
     </OpenFeatureProvider>

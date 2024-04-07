@@ -9,9 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@openfeature/react-sdk": "^0.2.3-experimental",
-    "@openfeature/flagsmith": "^0.1.0",
-    "flagsmith": "^3.24.0",
+    "@openfeature/flagsmith-client-provider": "^0.1.0",
+    "@openfeature/react-sdk": "^0.2.2-experimental",
     "lodash-es": "^4.17.21",
     "next": "13.5.3",
     "next-transpile-modules": "^9.0.0",

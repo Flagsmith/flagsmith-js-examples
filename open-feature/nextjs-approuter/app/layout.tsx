@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './styles/index.scss'
+import { createFlagsmithInstance } from 'flagsmith/isomorphic'
+import { FlagsmithClientProvider } from '@openfeature/flagsmith-client-provider'
+import { OpenFeature } from '@openfeature/web-sdk'
+
 import Nav from '@/app/components/Nav'
 import useDefaultUser from '@/app/hooks/useDefaultUser'
-import { createFlagsmithInstance } from 'flagsmith/isomorphic'
 import FeatureFlagProvider from '@/app/components/FeatureFlagProvider'
-import { FlagsmithProvider } from '@openfeature/flagsmith'
-import { OpenFeature } from '@openfeature/web-sdk'
 import getTraits from "@/app/utils/getTraits";
 
 const inter = Inter({ subsets: ['latin'] })
@@ -33,7 +34,7 @@ export default async function RootLayout({
       })
   }
   await OpenFeature.setProviderAndWait(
-    new FlagsmithProvider({
+    new FlagsmithClientProvider({
       flagsmithInstance: flagsmith,
       environmentID: 'QjgYur4LQTwe5HpvbvhpzK',
     }),

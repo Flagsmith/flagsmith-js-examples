@@ -6,7 +6,7 @@ import {createFlagsmithInstance} from "flagsmith/isomorphic";
 import {useRef} from "react";
 import {OpenFeature} from "@openfeature/web-sdk";
 import {OpenFeatureProvider} from "@openfeature/react-sdk";
-import {FlagsmithProvider} from "@openfeature/flagsmith";
+import {FlagsmithClientProvider} from "@openfeature/flagsmith-client-provider";
 
 const isClient = typeof window !== 'undefined';
 const environmentID = 'QjgYur4LQTwe5HpvbvhpzK';
@@ -14,7 +14,7 @@ function MyApp({ Component, identity, pageProps, flagsmithState }: AppProps & {f
     const flagsmithRef = useRef(createFlagsmithInstance())
     const renderRef = useRef(true);
     if(renderRef.current) {
-        OpenFeature.setProvider(new FlagsmithProvider({
+        OpenFeature.setProvider(new FlagsmithClientProvider({
             environmentID,
             preventFetch: isClient, // optionally prevent clientside fetching of flags
             state: flagsmithState,
@@ -36,7 +36,7 @@ MyApp.getInitialProps = async ({ctx}:AppContextType) => {
     const flagsmithInstance = createFlagsmithInstance()
     OpenFeature.setContext(identity?{targetingKey: identity, traits:{example_trait:1}}:{})
     await OpenFeature.setProviderAndWait(
-        new FlagsmithProvider({
+        new FlagsmithClientProvider({
             flagsmithInstance: flagsmithInstance,
             environmentID: 'QjgYur4LQTwe5HpvbvhpzK',
         }),

@@ -1,7 +1,7 @@
 'use client'
 import { FC, ReactNode, useRef } from 'react'
 import { IState } from 'flagsmith/types'
-import { FlagsmithProvider } from '@openfeature/flagsmith'
+import { FlagsmithClientProvider } from '@openfeature/flagsmith-client-provider'
 import { createFlagsmithInstance } from 'flagsmith/isomorphic'
 import { OpenFeature } from '@openfeature/web-sdk'
 import { OpenFeatureProvider } from '@openfeature/react-sdk'
@@ -19,7 +19,7 @@ const FeatureFlagProvider: FC<FeatureFlagProviderType> = ({
   const flagsmithInstance = useRef(createFlagsmithInstance())
   if (renderRef.current) {
     OpenFeature.setProvider(
-      new FlagsmithProvider({
+      new FlagsmithClientProvider({
         flagsmithInstance: flagsmithInstance.current,
         environmentID: 'QjgYur4LQTwe5HpvbvhpzK',
         state:serverState

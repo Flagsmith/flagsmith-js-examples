@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {FlagsmithProvider} from '@openfeature/flagsmith';
+import {FlagsmithClientProvider} from '@openfeature/flagsmith-client-provider';
 import {OpenFeature, ProviderEvents} from '@openfeature/web-sdk';
 import {NgIf, NgFor, NgForOf} from '@angular/common';
+import {EventHandler} from "@openfeature/core";
 
 @Component({
   selector: 'app-root',
@@ -14,39 +15,35 @@ import {NgIf, NgFor, NgForOf} from '@angular/common';
 export class AppComponent {
   logs = [] as any[];
   loading = true;
-  loggedIn = false;
   environmentID = 'QjgYur4LQTwe5HpvbvhpzK';
   identity = null as string | null;
   buttonClicks = null;
   trait = null;
 
+  flagsmithClientProvider: FlagsmithClientProvider = new FlagsmithClientProvider({
+    environmentID: this.environmentID,
+    cacheFlags: true,
+    defaultFlags: {
+      default_feature: {enabled: true},
+      font_size: { enabled: true, value: 12 },
+    },
+  });
+
 
   constructor() {
-    const { environmentID, handleFlags, handleFlagsError } = this;
-    // Mock cached logged in user and provider it to OpenFeature
-    try {
-      const userData = localStorage.getItem("userData")
-      if(userData) {
-        const {id,...rest} = JSON.parse(userData)
-        OpenFeature.setContext({targetingKey: id, traits: {...rest}})
-      }
-    } catch {}
+    const { handleFlags, handleFlagsError } = this;
 
-    const flagsmithFeatureFlagWebProvider = new FlagsmithProvider({
-      environmentID,
-      cacheFlags: true,
-      defaultFlags: {
-        default_feature: {enabled: true},
-        font_size: { enabled: true, value: 12 },
-      },
-    });
     OpenFeature.addHandler(ProviderEvents.ConfigurationChanged, handleFlags);
     OpenFeature.addHandler(ProviderEvents.Error, handleFlagsError);
-
-    OpenFeature.setProvider(flagsmithFeatureFlagWebProvider); // Attach the provider to OpenFeature
+    OpenFeature.setProvider(this.flagsmithClientProvider)
+    if(OpenFeature.getClient().providerStatus === 'READY') {
+      this.handleFlags()
+    }
   }
 
-  handleFlags = () => {
+  handleFlags:EventHandler = () => {
+    const identity = this.flagsmithClientProvider.flagsmithClient.identity
+    this.identity = identity?`${identity}`: null
     this.loading = false;
     const client = OpenFeature.getClient()
     this.logs = [{
@@ -55,7 +52,6 @@ export class AppComponent {
       font_size: client.getNumberValue("font_size", 12),
       off_value: client.getBooleanValue("off_value", false),
     }].concat(this.logs);
-    this.identity = OpenFeature.getContext().targetingKey || null;
   }
 
   handleFlagsError = (details:any) => {
@@ -69,7 +65,6 @@ export class AppComponent {
   login = () => {
     const userData = {id:"flagsmith_sample_user", example_trait: 1}
     OpenFeature.setContext({targetingKey: userData.id, traits:{example_trait:userData.example_trait}});
-    localStorage.setItem("userData", JSON.stringify(userData))
   }
 
 }

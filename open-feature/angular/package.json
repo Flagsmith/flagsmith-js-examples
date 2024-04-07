@@ -19,7 +19,6 @@
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
     "@openfeature/flagsmith-client-provider": "^0.1.0",
-    "@openfeature/react-sdk": "^0.2.2-experimental",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

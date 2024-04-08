@@ -20,5 +20,8 @@ For applications that use JS Flagsmith client the process for bundling default f
         - The flagsmith cli will use the environment variable FLAGSMITH_ENVIRONMENT to determine what environment to use.
 
  2 - Before calling  ```flagsmith.init()```, use the ``flagsmith.setState(state)`` function passing in the output of flag-state.json.
- 
 
+
+## Flagsmith CLI
+
+We created [flagsmith-cli](https://github.com/Flagsmith/flagsmith-cli) which allows you to get default flags based on a snapshot of your environment. See [here](https://github.com/Flagsmith/flagsmith-cli/tree/master/example) for an example. 

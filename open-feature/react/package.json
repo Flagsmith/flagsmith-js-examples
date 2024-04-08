@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@openfeature/flagsmith-client-provider": "^0.1.0",
+    "@openfeature/flagsmith-client-provider": "^0.1.2",
     "@openfeature/react-sdk": "^0.2.3-experimental",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",

@@ -9,12 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@openfeature/flagsmith-client-provider": "^0.1.0",
+    "@openfeature/flagsmith-client-provider": "^0.1.2",
     "@openfeature/react-sdk": "^0.2.2-experimental",
     "bootstrap": "^5.3.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "flagsmith": "^4.0.0",
     "js-cookie": "^3.0.5",
     "next": "14.1.0",
     "prettier": "^2.5.1",

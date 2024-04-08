@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@openfeature/flagsmith-client-provider": "^0.1.0",
+    "@openfeature/flagsmith-client-provider": "^0.1.2",
     "@openfeature/react-sdk": "^0.2.2-experimental",
     "lodash-es": "^4.17.21",
     "next": "13.5.3",

@@ -1,17 +1,16 @@
 import { FC } from 'react'
-import {
-  useBooleanFlagValue,
-  useNumberFlagValue,
-  useStringFlagValue,
-} from '@openfeature/react-sdk'
+import { useFlags } from 'flagsmith/react'
 
 type WelcomeMessageType = {}
 
 const WelcomeMessage: FC<WelcomeMessageType> = ({}) => {
-  const font_size = useNumberFlagValue('font_size', 12)
+  const { welcome_message } = useFlags(['welcome_message'])
+  if (!welcome_message.enabled) {
+    return null
+  }
   return (
     <div className='border border-1 rounded border-secondary p-2'>
-      <code>font_size: {font_size}</code>
+      <code>{welcome_message.value}</code>
     </div>
   )
 }

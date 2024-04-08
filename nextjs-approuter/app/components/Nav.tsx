@@ -6,8 +6,8 @@ import useUser from '@/app/hooks/useUser'
 const LoginForm: FC<{ defaultUser: User | undefined }> = ({ defaultUser }) => {
   const { login, logout, user } = useUser(defaultUser)
   const [formData, setFormData] = useState({
-    email: 'flagsmith_sample_user@example.com',
-    password: 'Password',
+    email: '',
+    password: '',
   })
 
   const disableLogin = !formData.email || !formData.password

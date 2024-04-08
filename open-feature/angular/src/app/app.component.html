@@ -1,0 +1,38 @@
+<!-- Toolbar -->
+
+<div class="content" role="main">
+  <h2>{{environmentID}}</h2>
+  <h3>{{identity}}</h3>
+  <div *ngIf="identity">
+    <div>
+      Button Clicks: {{buttonClicks}}
+      <button>
+        Toggle user trait
+      </button>
+      <button (click)="logout()">
+        logout
+      </button>
+    </div>
+  </div>
+  <div *ngIf="!identity">
+    <button (click)="login()">
+      Login as sample user
+    </button>
+  </div>
+  <div *ngFor="let log of logs">
+    <div>
+      Timestamp: {{log.timestamp}}
+    </div>
+    <div>
+      json_value: {{log.json_value}}
+    </div>
+    <div>
+      font_size: {{log.font_size}}
+    </div>
+    <div>
+      off_value: {{log.off_value}}
+    </div>
+  </div>
+</div>
+
+

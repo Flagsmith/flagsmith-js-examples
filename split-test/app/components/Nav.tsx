@@ -7,7 +7,7 @@ const LoginForm: FC<{ defaultUser: User | undefined }> = ({ defaultUser }) => {
   const { login, logout, user } = useUser(defaultUser)
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
+    password: 'example',
   })
 
   const disableLogin = !formData.email || !formData.password

@@ -14,7 +14,9 @@ const WelcomeMessage: FC<WelcomeMessageType> = ({}) => {
     <div className='border mb-4 border-1 rounded border-secondary p-2'>
       <div className='text-center'>
         <code>{hero.value} hero</code>
-        <div>Tracked conversion events: {lastTracked}</div>
+        {!!flagsmith.identity && (
+          <div>Tracked conversion events: {lastTracked}</div>
+        )}
       </div>
       {!!flagsmith.identity && (
         <div className='d-flex mt-4 flex-row gap-4'>
@@ -32,11 +34,11 @@ const WelcomeMessage: FC<WelcomeMessageType> = ({}) => {
             className='btn btn-primary'
             onClick={() => {
               flagsmith
-                .trackEvent('signup')
+                .trackEvent('newsletter_subscription')
                 .then(() => setLastTracked(lastTracked + 1))
             }}
           >
-            Track signup
+            Track subscribe to newsletter
           </button>
         </div>
       )}

@@ -40,7 +40,6 @@ const LoginForm: FC<{ defaultUser: User | undefined }> = ({ defaultUser }) => {
       ) : (
         <form className='d-flex flex-row gap-4' onSubmit={handleLogin}>
           <input
-            type='email'
             className='form-control'
             id='email'
             name='email'

@@ -16,7 +16,11 @@ const FeatureFlagProvider: FC<FeatureFlagProviderType> = ({
   const flagsmithInstance = useRef(createFlagsmithInstance())
   return (
     <FlagsmithProvider
-      options={{ enableAnalytics: true, environmentID: serverState.environmentID }}
+      options={{
+        enableAnalytics: true,
+        splitTestingAnalytics: true,
+        environmentID: serverState.environmentID,
+      }}
       flagsmith={flagsmithInstance.current}
       serverState={serverState}
     >

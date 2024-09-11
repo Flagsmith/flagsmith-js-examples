@@ -13,6 +13,7 @@ function MyApp({ Component, identity, pageProps, flagsmithState }: AppProps & {f
     return (
         <FlagsmithProvider flagsmith={flagsmithRef.current} options={{
             environmentID,
+            enableAnalytics: true,
             preventFetch: isClient, // optionally prevent clientside fetching of flags
             state: flagsmithState
         }} key={identity}

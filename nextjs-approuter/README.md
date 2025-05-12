@@ -2,10 +2,9 @@
 
 ## Next.js and Flagsmith Tutorial
 
-The repository for the [live stream tutorial](https://www.youtube.com/watch?v=u9TjbtZX4Zg) with [@eddiejaoude](https://twitter.com/eddiejaoude).
+The repository was originally for the [live stream tutorial](https://www.youtube.com/watch?v=u9TjbtZX4Zg) with [@eddiejaoude](https://twitter.com/eddiejaoude), and has since been updated with the latest dependencies.
 
 ## Getting started
-
 
 **Install**
 
@@ -14,9 +13,7 @@ npm i
 ```
 
 **Run**
+
 ```
 npm run dev
 ```
-
-
-

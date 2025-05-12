@@ -1,8 +1,10 @@
 'use client'
 
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react'
+
 import { User } from '@/app/types'
 import useUser from '@/app/hooks/useUser'
+
 const LoginForm: FC<{ defaultUser: User | undefined }> = ({ defaultUser }) => {
   const { login, logout, user } = useUser(defaultUser)
   const [formData, setFormData] = useState({

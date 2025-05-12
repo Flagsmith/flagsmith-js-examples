@@ -7,35 +7,47 @@ $btn-link-color: $primary;
 $btn-link-hover-color: $primary600;
 $body-bg: black;
 $body-color: white;
-$font-family-monospace: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+$font-family-monospace:
+  ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono',
+  'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono',
+  'Droid Sans Mono', 'Courier New', monospace;
 $code-color: white;
 
-$glow: linear-gradient( to bottom right, rgba(1, 65, 255, 0), rgba(1, 65, 255, 0), transparentize($primary,0.7) );
-$glow-primary:radial-gradient(transparentize($primary,0.6), rgba(1, 65, 255, 0));
-$font-sizes: (
-        md: 16px,
-        sm: 13px,
+$glow: linear-gradient(
+  to bottom right,
+  rgba(1, 65, 255, 0),
+  rgba(1, 65, 255, 0),
+  transparentize($primary, 0.7)
 );
-@import "bootstrap/scss/bootstrap";
+$glow-primary: radial-gradient(
+  transparentize($primary, 0.6),
+  rgba(1, 65, 255, 0)
+);
+$font-sizes: (
+  md: 16px,
+  sm: 13px,
+);
 
+@import 'bootstrap/scss/bootstrap';
 
-//create-next-app styles
+// create-next-app styles
 .logo-container {
-  &::before{
+  &::before {
     width: 480px;
     height: 360px;
     margin-left: -400px;
     background: $glow;
     border-radius: 50%;
   }
-  &::after{
+  &::after {
     width: 240px;
     height: 180px;
     z-index: -1;
     background: $glow-primary;
   }
-  &::before, &::after {
-    content: "";
+  &::before,
+  &::after {
+    content: '';
     left: 50%;
     position: absolute;
     filter: blur(45px);
@@ -43,7 +55,6 @@ $font-sizes: (
     background-color: $glow;
   }
 }
-
 
 .card {
   color: white;
@@ -67,7 +78,6 @@ $font-sizes: (
 .vercelLogo {
   filter: invert(1);
 }
-
 
 .card {
   span {

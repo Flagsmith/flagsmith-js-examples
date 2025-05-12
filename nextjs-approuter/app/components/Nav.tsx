@@ -3,15 +3,21 @@
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react'
 
 import { User } from '@/app/types'
-import useUser from '@/app/hooks/useUser'
+import { useRouter } from 'next/navigation'
+import { useUser } from '@/app/hooks/useUser'
 
 const LoginForm: FC<{ defaultUser: User | undefined }> = ({ defaultUser }) => {
+  // Router is used to refresh the page after a login or logout.
+  const router = useRouter()
+
   const { login, logout, user } = useUser(defaultUser)
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   })
 
+  // Disable the login button if the form is not filled out.
   const disableLogin = !formData.email || !formData.password
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,12 +31,16 @@ const LoginForm: FC<{ defaultUser: User | undefined }> = ({ defaultUser }) => {
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!disableLogin) {
-      login(formData)
+      login(formData).then(() => {
+        router.refresh()
+      })
     }
   }
 
   const handleLogout = () => {
-    logout()
+    logout().then(() => {
+      router.refresh()
+    })
   }
 
   return (

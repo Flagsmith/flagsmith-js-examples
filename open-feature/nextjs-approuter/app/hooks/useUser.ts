@@ -1,14 +1,15 @@
 import { useCallback, useState } from 'react'
-import { User } from '@/app/types'
-import { useFlagsmith } from 'flagsmith/react'
-import getTraits from '@/app/utils/getTraits'
+
 import { OpenFeature } from '@openfeature/web-sdk'
+import { User } from '@/app/types'
+import {getTraits} from '@/app/utils/getTraits'
 
 export interface LoginRequest {
   email: string
   password: string
 }
-export default function (defaultUser: User | null = null) {
+ 
+export function useUser(defaultUser: User | null = null) {
   const [user, setUser] = useState(defaultUser)
   const login = useCallback((data: LoginRequest) => {
     return fetch('/api/login', {

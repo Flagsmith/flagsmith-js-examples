@@ -1,6 +1,6 @@
 import { User } from '@/app/types'
 
-export default function (user: User | undefined) {
+export function getTraits(user: User | undefined) {
   if (!user) {
     return undefined
   }

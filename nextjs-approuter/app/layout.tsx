@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 import Nav from '@/app/components/Nav'
 import flagsmith from 'flagsmith/isomorphic'
-import getTraits from '@/app/utils/getTraits'
-import useDefaultUser from '@/app/hooks/useDefaultUser'
+import { getDefaultUser } from '@/app/utils/getDefaultUser'
+import { getTraits } from '@/app/utils/getTraits'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,7 +20,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const defaultUser = await useDefaultUser()
+  const defaultUser = await getDefaultUser()
 
   await flagsmith.init({
     // The layout is rendered on the server, so we need to use the server environment ID.
@@ -32,8 +32,9 @@ export default async function RootLayout({
 
   const serverState = flagsmith.getState()
 
-  // Check this out in the terminal console.
-  console.log(serverState)
+  // Check this out in the terminal console. It can also appear in the browser console
+  // with a "Server" label prefixed.
+  console.log('serverState', serverState)
 
   return (
     <html lang='en'>

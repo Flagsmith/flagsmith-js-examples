@@ -7,13 +7,15 @@ import { cookies } from 'next/headers'
 export async function POST(request: Request) {
   const body: LoginRequest = await request.json()
 
+  const { email } = body
+
   // Mock a user id by formatting the email address.
-  const id = body.email.split('@').join('_').replace(/\./, '_')
+  const id = email.split('@').join('_').replace(/\./, '_')
 
   // Create a mock user object and store it in cookie.
   const userJSON = {
     id,
-    email: body.email,
+    email,
   }
 
   const user = JSON.stringify(userJSON)

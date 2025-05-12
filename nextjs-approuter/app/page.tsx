@@ -1,12 +1,15 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import Logo from '@/app/components/Logo'
 import WelcomeMessage from '@/app/components/WelcomeMessage'
+
 export default function Home() {
   return (
     <main className={'main'}>
       <WelcomeMessage />
+      <Link href='/beta'>Click here to open the beta!</Link>
       <div className={'d-flex gap-4 text-center logo-container flex-column'}>
         <Image
           className={'logo'}
@@ -18,7 +21,6 @@ export default function Home() {
         />
         <Logo />
       </div>
-
       <div className='d-flex justify-content-start align-items-start flex-row gap-5'>
         <a
           className='card'

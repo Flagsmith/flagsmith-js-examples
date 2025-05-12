@@ -1,8 +1,8 @@
-import { cookies } from 'next/headers'
 import { User } from '@/app/types'
+import { cookies } from 'next/headers'
 
-const useDefaultUser = () => {
-  const user = cookies().get('user')?.value
+export const getDefaultUser = async () => {
+  const user = (await cookies()).get('user')?.value
 
   try {
     return user ? (JSON.parse(user) as User) : undefined
@@ -10,5 +10,3 @@ const useDefaultUser = () => {
     return undefined
   }
 }
-
-export default useDefaultUser

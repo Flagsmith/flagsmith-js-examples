@@ -1,6 +1,8 @@
+import type { FeatureFlagName } from './flags'
 import { HasFeatureOptions } from 'flagsmith'
 import { User } from '@/app/types'
 import flagsmith from 'flagsmith/isomorphic'
+
 type FeatureFlagValue = string | number | boolean | null
 
 /**
@@ -12,7 +14,7 @@ type FeatureFlagValue = string | number | boolean | null
  * @returns {Promise<{ enabled: boolean, value: FeatureFlagValue }>}
  */
 export async function checkFeatureFlag(
-  flagName: string,
+  flagName: FeatureFlagName,
   options?: HasFeatureOptions,
 ): Promise<{ enabled: boolean; value: FeatureFlagValue }> {
   await flagsmith.init({
@@ -33,7 +35,7 @@ export async function checkFeatureFlag(
  * @returns {Promise<boolean>}
  */
 export async function isFeatureEnabledForUser(
-  flagName: string,
+  flagName: FeatureFlagName,
   user: User,
 ): Promise<boolean> {
   const { enabled, value: userEmailListJSON } = await checkFeatureFlag(flagName)

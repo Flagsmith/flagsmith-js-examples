@@ -6,14 +6,28 @@ The repository was originally for the [live stream tutorial](https://www.youtube
 
 ## Getting started
 
-**Install**
+### Setup Flagsmith
+
+First, set up Flagsmith and add two feature flags. These flags are documented in `app/lib/flags.ts`.
+
+### Setup `.env`
+
+Copy `.env.example` to `.env` and use your Flagsmith server-only key.
+
+### Install Dependencies
 
 ```
 npm i
 ```
 
-**Run**
+### Run the App
 
 ```
 npm run dev
+```
+
+### (Optional) Build and Run
+
+```
+npm run build && npm run start
 ```

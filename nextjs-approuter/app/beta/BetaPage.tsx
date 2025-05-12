@@ -10,7 +10,7 @@ import WelcomeMessage from '../components/WelcomeMessage'
  */
 export const BetaPage = () => {
   return (
-    <main className={'main'}>
+    <main className='main'>
       <div>
         <h1>Welcome to the Beta! 🎉</h1>
         <p>
@@ -22,7 +22,9 @@ export const BetaPage = () => {
         </p>
         {/**
          * Since this is a client component, we can include the WelcomeMessage
-         * component here. Otherwise, we would encounter an error.
+         * component here. Otherwise, we would encounter an error because the
+         * WelcomeMessage component's use of the useFlags hook is a client-side
+         * hook.
          */}
         <WelcomeMessage />
         <HomePageLink />

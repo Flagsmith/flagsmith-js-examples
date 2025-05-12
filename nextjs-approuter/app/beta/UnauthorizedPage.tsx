@@ -9,7 +9,7 @@ import { HomePageLink } from './components/HomePageLink'
  */
 export const UnauthorizedPage = () => {
   return (
-    <main className={'main'}>
+    <main className='main'>
       <div>
         <h1>Restricted Beta Page</h1>
         <p>Must be logged in to access this page.</p>

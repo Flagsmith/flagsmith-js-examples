@@ -9,7 +9,7 @@ import { HomePageLink } from './components/HomePageLink'
  */
 export const RestrictedPage = () => {
   return (
-    <main className={'main'}>
+    <main className='main'>
       <div>
         <h1>Restricted Beta Page</h1>
         <p>You are not a beta user.</p>

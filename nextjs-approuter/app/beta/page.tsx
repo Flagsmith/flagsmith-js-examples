@@ -1,6 +1,3 @@
-// We technically don't need to use 'use server' because it's the default.
-'use server'
-
 import { BetaPage } from './BetaPage'
 import { RestrictedPage } from './RestrictedPage'
 import { UnauthorizedPage } from './UnauthorizedPage'

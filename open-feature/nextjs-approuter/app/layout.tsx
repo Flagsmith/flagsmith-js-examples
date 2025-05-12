@@ -1,14 +1,14 @@
-import './styles/index.scss'
-
-import FeatureFlagProvider from '@/app/components/FeatureFlagProvider'
-import { FlagsmithClientProvider } from '@openfeature/flagsmith-client-provider'
-import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
-import Nav from '@/app/components/Nav'
-import { OpenFeature } from '@openfeature/web-sdk'
+import { Inter } from 'next/font/google'
+import './styles/index.scss'
 import { createFlagsmithInstance } from 'flagsmith/isomorphic'
-import getDefaultUser from '@/app/utils/getDefaultUser'
-import {getTraits} from "@/app/utils/getTraits";
+import { FlagsmithClientProvider } from '@openfeature/flagsmith-client-provider'
+import { OpenFeature } from '@openfeature/web-sdk'
+
+import Nav from '@/app/components/Nav'
+import useDefaultUser from '@/app/hooks/useDefaultUser'
+import FeatureFlagProvider from '@/app/components/FeatureFlagProvider'
+import getTraits from "@/app/utils/getTraits";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,7 +21,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const defaultUser = getDefaultUser()
+  const defaultUser = useDefaultUser()
   const flagsmith = createFlagsmithInstance()
   await Promise.all([
       OpenFeature.clearContexts(),

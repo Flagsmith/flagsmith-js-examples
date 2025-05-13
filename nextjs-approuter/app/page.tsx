@@ -1,12 +1,15 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import Logo from '@/app/components/Logo'
 import WelcomeMessage from '@/app/components/WelcomeMessage'
+
 export default function Home() {
   return (
     <main className={'main'}>
       <WelcomeMessage />
+      <Link href='/beta'>Click here to open the beta!</Link>
       <div className={'d-flex gap-4 text-center logo-container flex-column'}>
         <Image
           className={'logo'}

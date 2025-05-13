@@ -1,11 +1,13 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './styles/index.scss'
-import Nav from '@/app/components/Nav'
-import useDefaultUser from '@/app/hooks/useDefaultUser'
-import { createFlagsmithInstance } from 'flagsmith/isomorphic'
+
 import FeatureFlagProvider from '@/app/components/FeatureFlagProvider'
-import getTraits from '@/app/utils/getTraits'
+import { Inter } from 'next/font/google'
+import type { Metadata } from 'next'
+import Nav from '@/app/components/Nav'
+import flagsmith from 'flagsmith/isomorphic'
+import { getDefaultUser } from '@/app/utils/getDefaultUser'
+import { getTraits } from '@/app/utils/getTraits'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -17,15 +19,22 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const defaultUser = useDefaultUser()
-  const flagsmith = createFlagsmithInstance()
+  const defaultUser = await getDefaultUser()
+
   await flagsmith.init({
-    environmentID: '5zsj2BaedF6BcBHXLNGqUj',
+    // The layout is rendered on the server, so we need to use the server environment ID.
+    // This is because the client environment ID is not available until the client is rendered.
+    environmentID: process.env.FLAGSMITH_ENVIRONMENT_ID || '',
     identity: defaultUser?.id,
     traits: getTraits(defaultUser),
   })
+
   const serverState = flagsmith.getState()
-  console.log(serverState)
+
+  // Check this out in the terminal console. It can also appear in the browser console
+  // with a "Server" label prefixed.
+  console.log('serverState', serverState)
+
   return (
     <html lang='en'>
       <FeatureFlagProvider serverState={serverState}>

@@ -1,7 +1,9 @@
 'use client'
+
 import { FC, ReactNode, useRef } from 'react'
-import { IState } from 'flagsmith/types'
+
 import { FlagsmithProvider } from 'flagsmith/react'
+import { IState } from 'flagsmith/types'
 import { createFlagsmithInstance } from 'flagsmith/isomorphic'
 
 type FeatureFlagProviderType = {

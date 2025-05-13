@@ -2,21 +2,40 @@
 
 ## Next.js and Flagsmith Tutorial
 
-The repository for the [live stream tutorial](https://www.youtube.com/watch?v=u9TjbtZX4Zg) with [@eddiejaoude](https://twitter.com/eddiejaoude).
+The repository was originally for the [live stream tutorial](https://www.youtube.com/watch?v=u9TjbtZX4Zg) with [@eddiejaoude](https://twitter.com/eddiejaoude), and has since been updated with the latest dependencies.
 
 ## Getting started
 
+### Setup Flagsmith
 
-**Install**
+First, set up Flagsmith and add two feature flags. These flags are documented in `app/lib/flags.ts`.
+
+### Setup `.env`
+
+Copy `.env.example` to `.env` and use your Flagsmith server-only key.
+
+### Set Node Version
+
+Use [nvm](https://github.com/nvm-sh/nvm) to set the local Node version to match the value in the `.nvmrc` file.
+
+```
+nvm use
+```
+
+### Install Dependencies
 
 ```
 npm i
 ```
 
-**Run**
+### Run the App
+
 ```
 npm run dev
 ```
 
+### (Optional) Build and Run
 
-
+```
+npm run build && npm run start
+```

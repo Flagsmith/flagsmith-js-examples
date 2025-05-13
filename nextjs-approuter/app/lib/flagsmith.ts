@@ -1,9 +1,32 @@
+import { HasFeatureOptions, IFlagsmith } from 'flagsmith'
+
 import type { FeatureFlagName } from './flags'
-import { HasFeatureOptions } from 'flagsmith'
 import { User } from '@/app/types'
 import flagsmith from 'flagsmith/isomorphic'
+import { getDefaultUser } from '../utils/getDefaultUser'
+import { getTraits } from '../utils/getTraits'
 
 type FeatureFlagValue = string | number | boolean | null
+
+/**
+ * Initialize the Flagsmith client.
+ *
+ * @returns {Promise<IFlagsmith>}
+ */
+export async function getFlagsmith(): Promise<IFlagsmith> {
+  const defaultUser = await getDefaultUser()
+  const traits = getTraits(defaultUser)
+
+  await flagsmith.init({
+    // This can be a server-only key, because the Flagsmith state is
+    // fetched and populated server-side.
+    environmentID: process.env.FLAGSMITH_ENVIRONMENT_ID || '',
+    identity: defaultUser?.id,
+    traits,
+  })
+
+  return flagsmith
+}
 
 /**
  * Check if a feature flag is enabled, and return its associated
@@ -17,10 +40,7 @@ export async function checkFeatureFlag(
   flagName: FeatureFlagName,
   options?: HasFeatureOptions,
 ): Promise<{ enabled: boolean; value: FeatureFlagValue }> {
-  await flagsmith.init({
-    // If the environment ID is not set, throw an error to avoid silent failures.
-    environmentID: process.env.FLAGSMITH_ENVIRONMENT_ID,
-  })
+  const flagsmith = await getFlagsmith()
 
   const value = flagsmith.getValue(flagName)
   const enabled = flagsmith.hasFeature(flagName, options)

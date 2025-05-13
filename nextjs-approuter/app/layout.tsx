@@ -4,9 +4,8 @@ import FeatureFlagProvider from '@/app/components/FeatureFlagProvider'
 import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 import Nav from '@/app/components/Nav'
-import flagsmith from 'flagsmith/isomorphic'
 import { getDefaultUser } from '@/app/utils/getDefaultUser'
-import { getTraits } from '@/app/utils/getTraits'
+import { getFlagsmith } from './lib/flagsmith'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,14 +20,7 @@ export default async function RootLayout({
 }>) {
   const defaultUser = await getDefaultUser()
 
-  await flagsmith.init({
-    // The layout is rendered on the server, so we need to use the server environment ID.
-    // This is because the client environment ID is not available until the client is rendered.
-    environmentID: process.env.FLAGSMITH_ENVIRONMENT_ID || '',
-    identity: defaultUser?.id,
-    traits: getTraits(defaultUser),
-  })
-
+  const flagsmith = await getFlagsmith()
   const serverState = flagsmith.getState()
 
   // Check this out in the terminal console. It can also appear in the browser console

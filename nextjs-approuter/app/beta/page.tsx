@@ -1,8 +1,8 @@
 import { BetaPage } from './BetaPage'
 import { RestrictedPage } from './RestrictedPage'
 import { UnauthorizedPage } from './UnauthorizedPage'
+import { checkFeatureFlag } from '@/app/lib/flagsmith'
 import { getDefaultUser } from '@/app/utils/getDefaultUser'
-import { isFeatureEnabledForUser } from '@/app/lib/flagsmith'
 
 /**
  * This page is a server component that checks the user's login status and
@@ -13,7 +13,7 @@ import { isFeatureEnabledForUser } from '@/app/lib/flagsmith'
  *
  * The general way to determine which way to check feature flags is:
  *
- * - Rendering the page on the server? Use the checkFeatureFlag() or associated helper.
+ * - Rendering the page on the server? Use the checkFeatureFlag().
  * - Dynamically changing the UI based on the feature flag? Use the useFlags() hook.
  *
  * @returns {Promise<React.ReactNode>}
@@ -26,7 +26,7 @@ export default async function RestrictedBeta() {
   if (!defaultUser) return <UnauthorizedPage />
 
   // Check if the user is a beta user.
-  const isBetaUser = await isFeatureEnabledForUser('beta_users', defaultUser)
+  const { enabled: isBetaUser } = await checkFeatureFlag('beta_users')
 
   // Regular users are served the RestrictedPage because
   // they are not beta users.

@@ -12,7 +12,7 @@ First, set up Flagsmith and add two feature flags. These flags are documented in
 
 ### Setup `.env`
 
-Copy `.env.example` to `.env` and use your Flagsmith server-only key.
+Copy `.env.example` to `.env` and use your Flagsmith client-side key.
 
 ### Set Node Version
 

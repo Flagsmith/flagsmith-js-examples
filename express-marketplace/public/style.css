@@ -1,0 +1,19 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+}
+
+.products {
+  list-style: none;
+  padding: 0;
+}
+
+.products li {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.price {
+  color: #555;
+}

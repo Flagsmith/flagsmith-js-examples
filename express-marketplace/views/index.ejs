@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketplace</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Simple Marketplace</h1>
+  <ul class="products">
+    <% products.forEach(product => { %>
+      <li>
+        <h2><%= product.name %></h2>
+        <p class="price"><%= product.price %></p>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

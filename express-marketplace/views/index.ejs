@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <% if (user) { %>
+    <p>Logged in as <%= user %> - <a href="/logout">Logout</a></p>
+  <% } else { %>
+    <p><a href="/login">Login</a></p>
+  <% } %>
   <h1>Simple Marketplace</h1>
   <ul class="products">
     <% products.forEach(product => { %>

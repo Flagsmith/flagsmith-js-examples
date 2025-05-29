@@ -12,5 +12,6 @@ npm start
 ```
 
 The application will be available at [http://localhost:3000](http://localhost:3000).
-The Flagsmith environment ID is hard coded in `server.js`.
+Set `FLAGSMITH_ENVIRONMENT_ID` before starting the server to configure your environment key.
 
+A simple login form is available at `/login`. The logged in username is stored in memory and used to fetch identity flags.

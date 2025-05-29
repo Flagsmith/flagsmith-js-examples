@@ -5,8 +5,10 @@ const { Flagsmith } = require('flagsmith-nodejs');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const environmentKey = process.env.FLAGSMITH_ENVIRONMENT_KEY;
+
 const flagsmith = new Flagsmith({
-  environmentKey: 'QjgYur4LQTwe5HpvbvhpzK',
+    environmentKey: environmentKey,
 });
 
 app.set('view engine', 'ejs');

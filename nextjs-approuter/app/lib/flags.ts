@@ -8,7 +8,7 @@ export type FeatureFlagName =
   // test the feature flag integration. It is a "txt" value type and
   // will be rendered in the app on client-side.
   | 'welcome_message'
-  // Beta users is a multi-value feature flag that we can use to
-  // test the feature flag integration. It is a "json" value type and
-  // contains an array of user emails.
+  // Beta users is a feature flag that depends on the signed-in
+  // user's email being passed in as a trait, to be tested against
+  // the segment override in Flagsmith.
   | 'beta_users'

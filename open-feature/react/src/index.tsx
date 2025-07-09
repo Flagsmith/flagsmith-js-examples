@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { OpenFeature } from "@openfeature/web-sdk";
 import { OpenFeatureProvider } from "@openfeature/react-sdk";
 import "./index.css";
@@ -9,11 +9,14 @@ import flagsmithProvider from "./flagsmithProvider";
 
 OpenFeature.setProvider(flagsmithProvider);
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+
+root.render(
   <OpenFeatureProvider>
     <Suspense fallback={<div>Loading</div>}>
       <App />
     </Suspense>
-  </OpenFeatureProvider>,
-  document.getElementById("root")
+  </OpenFeatureProvider>
 );

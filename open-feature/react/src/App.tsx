@@ -1,15 +1,13 @@
-import React from "react";
-
 // Whenever we need to modify the context, we can use the OpenFeature object.
 import { OpenFeature } from "@openfeature/web-sdk";
-
-// The useNumberFlagValue hook is a hook that allows us to get the value of a number flag,
-// from the OpenFeature API via whichever provider we have set.
-import { useNumberFlagValue } from "@openfeature/react-sdk";
 
 // By extracting the identity to a separate hook, we can swap out the provider
 // without having to change the identity hook.
 import { useIdentity } from "./useIdentity";
+
+// The useNumberFlagValue hook is a hook that allows us to get the value of a number flag,
+// from the OpenFeature API via whichever provider we have set.
+import { useNumberFlagValue } from "@openfeature/react-sdk";
 
 function App() {
   const identity = useIdentity();

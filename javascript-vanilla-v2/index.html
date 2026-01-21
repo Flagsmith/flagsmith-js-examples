@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript Vanilla Example V2</title>
+    <link rel="stylesheet" href="./index.css">
+
+    <!-- https://docs.flagsmith.com/clients/javascript#via-javascript-cdn -->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer -->
+    <script src="https://cdn.jsdelivr.net/npm/flagsmith/index.js" defer></script>
+    <script src="./main.js" defer></script>
+</head>
+
+<body>
+    <section class="content hidden" id="content">
+        <div class="header">
+            <h1>Javascript Vanilla Example</h1>
+            <button id="js-logout" class="hidden">
+                Logout
+            </button>
+
+            <button id="js-login">
+                Login
+            </button>
+        </div>
+
+        <div class="announcement" id="announcement">
+            <p>
+            </p>
+        </div>
+
+        <h2>Instructions</h2>
+        <ol id="list">
+            <li>Clone this repository to play with it locally.</li>
+            <li>Go to <a href="http://app.flagsmith.com/" target="_blank"
+                    rel="noopener noreferrer">app.flagsmith.com</a>, click on Sign Up, and create an account.</li>
+            <li>Create an Organisation.</li>
+            <li>Create a Project.</li>
+            <li>Under the Development environment, create the feature flags listed in the next section. You can continue
+                the steps after you are done creating all of them. See image 1.</li>
+            <li>Go to Settings (under your Development environment), Keys, and copy your Client-side Environment Key.
+            </li>
+            <li>In the file main.js under the javascript-vanilla-v2 folder, replace the existing environmentID (line 6)
+                key with yours and save.</li>
+            <li>Open the index.html under the javascript-vanilla-v2 folder in your browser. Now the example is already
+                working with your project!</li>
+            <li>Enable each of the feature flags in your development environment and refresh the app in your browser.
+                Notice what changed in your app for each feature flag you enabled.</li>
+            <li>We will now play with some mock identities (there is no real authentication) in our app.
+                <ul>
+                    <li>Login, type john@mycompany.com, Proceed, Logout.</li>
+                    <li>Login, type mary@mycompany.com, Proceed, Logout.</li>
+                    <li>Login, type joseph@mycompany.com, Proceed, Logout.</li>
+                </ul>
+            </li>
+            <li>Check the Identities (under your Development environment). You should see the Identities created there.
+            </li>
+            <li>Now click on the john@mycompany.com identity. Click on the announcement feature. Make sure it is enabled
+                and change the value to “Welcome, John! Identity override is working!”</li>
+            <li>Let’s now create a Segment (right under the Project Settings).
+                <ul>
+                    <li><b>ID:</b> mycompany_employees</li>
+                    <li><b>Description:</b> This is the segment for all my company employees so we can test in
+                        production
+                        later.</li>
+                    <li><b>Trait:</b> email</li>
+                    <li><b>Criteria:</b> Matches regex</li>
+                    <li><b>Value:</b> .*@mycompany\.com</li>
+                </ul>
+            </li>
+            <li>Go back to the Features (under Development environment), click on the announcement feature Segment
+                Overrides tab, select the mycompany_employees, enable it, and add the value: Welcome, employee! Segment
+                override is working! See image 2 and 3. You just created a Segment Override for your feature!</li>
+            <li>Login as john@mycompany.com, logout, login as mary@mycompany.com, logout. Notice the difference in the
+                announcement banner.</li>
+        </ol>
+
+        <h2>
+            Feature Flags
+        </h2>
+        <table id="features">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Enabled</th>
+                    <th>Value</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>new_button</td>
+                    <td>disabled</td>
+                    <td>empty</td>
+                    <td>This is the “Button 1” in my app</td>
+                </tr>
+                <tr>
+                    <td>coloured_button</td>
+                    <td>disabled</td>
+                    <td>#04A596</td>
+                    <td>This is “Button 2” in my app and it will have the background color of whatever is the value in
+                        this feature</td>
+                </tr>
+                <tr>
+                    <td>font_size</td>
+                    <td>disabled</td>
+                    <td>18</td>
+                    <td>Font size for the Instructions section</td>
+                </tr>
+                <tr>
+                    <td>show_footer_icons</td>
+                    <td>disabled</td>
+                    <td>empty</td>
+                    <td>This flag determines if we will show the footer with the links to our website, documentation,
+                        and GitHub</td>
+                </tr>
+                <tr>
+                    <td>announcement</td>
+                    <td>disabled</td>
+                    <td>This is a general announcement for all users</td>
+                    <td>Toggle this to show or hide the announcement on the top of the page</td>
+                </tr>
+                <tr>
+                    <td>json_textbox</td>
+                    <td>disabled</td>
+                    <td>{"indent": 4}</td>
+                    <td>Inspect all the feature flags in a textbox in JSON format. The value is itself a JSON from which
+                        we can extract values. Changing the number in the indent will change the format of the JSON.
+                    </td>
+                </tr>
+                <tr>
+                    <td>images</td>
+                    <td>enabled</td>
+                    <td>empty</td>
+                    <td>Show the example images</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="images">
+        <h2>Example Images</h2>
+        <div class="imagesBox">
+            <img src="./assets/example-1.jpg" alt="Feature Flags Dashboard Example">
+            <img src="./assets/example-2.jpg" alt="Segments Config Example">
+            <img src="./assets/example-3.jpg" alt="Identity Override Example">
+            <img src="./assets/example-4.jpg" alt="Identities Example">
+        </div>
+        </div>
+
+        <div class="button-box">
+            <button id="button">
+                Button 1
+            </button>
+
+            <button id="coloured-button">
+                Button 2
+            </button>
+        </div>
+        <p class="json" id="json-text-box">
+        </p>
+
+        <div class="links">
+            <p>
+                Links
+            </p>
+            <div class="icons" id="icons">
+                <a href="https://flagsmith.com">Flagsmith</a>
+                <a href="https://docs.flagsmith.com">Docs</a>
+                <a href="https://github.com/Flagsmith/flagsmith-js-client">Github</a>
+            </div>
+        </div>
+    </section>
+    <p id="loading">Loading...</p>
+
+    <div class="modal hidden" id="modal">
+        <form id="login-form" method="POST">
+            <label for="email"> Type Your Email</label>
+            <input name="email" type="text" id="email" placeholder="Email" required>
+            <div class="actions">
+                <button type="button" id="cancel-login">
+                    Cancel
+                </button>
+                <button type="submit">
+                    Proceed
+                </button>
+        </form>
+    </div>
+    </div>
+</body>
+
+</html>
